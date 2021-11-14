@@ -37,23 +37,25 @@ public class SaxParserHandler extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) {
-        if (currentTagName == null || !new String(ch, start, length).isBlank()) {
+        if (currentTagName == null) {
             return;
         }
-        if(address.size() == 0){
-            if (new String(ch, start, length).equals(Constant.delimiter)){
-                address.add("");
-            }else {
-                address.add(new String(ch, start, length));
-            }
-        }else if(currentTagName.equals(Constant.name)){
-            if(currentIsFile && comparator.check(new String(ch, start, length))){
-                print(new String(ch, start, length));
-            }else if(!currentIsFile && comparator.check(new String(ch, start, length))){
-                print(new String(ch, start, length));
-                address.add(new String(ch, start, length));
-            }else if(!currentIsFile){
-                address.add(new String(ch, start, length));
+        if(!new String(ch, start, length).isBlank()){
+            if(address.size() == 0){
+                if (new String(ch, start, length).equals(Constant.delimiter)){
+                    address.add("");
+                }else{
+                    address.add(new String(ch, start, length));
+                }
+            }else if(currentTagName.equals(Constant.name)){
+                if(currentIsFile && comparator.check(new String(ch, start, length))){
+                    print(new String(ch, start, length));
+                }else if(!currentIsFile && comparator.check(new String(ch, start, length))){
+                    print(new String(ch, start, length));
+                    address.add(new String(ch, start, length));
+                }else if(!currentIsFile){
+                    address.add(new String(ch, start, length));
+                }
             }
         }
     }
