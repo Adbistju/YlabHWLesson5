@@ -3,8 +3,6 @@ import Adbistju.system.exception.ArgumentException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.regex.Pattern;
-
 public class TestParserFilePathArg {
     @Test
     public void TestPathArg(){

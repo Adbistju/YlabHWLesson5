@@ -15,10 +15,26 @@ public class TestComparatorAndConvertParams {
 
     @Test
     public void TestComparatorByRegular(){
+        ComparatorByRegular comparator = new ComparatorByRegular(".*?[a-z]{4}-\\d+\\.[a-z]+");
+        System.out.println(comparator.check("file-77194797.xml"));
+        System.out.println(comparator.check("file-10738242118.java"));
+        System.out.println(comparator.check("7777777777.java"));
+    }
+
+    @Test
+    public void TestComparatorByRegular1(){
         ComparatorByRegular comparator = new ComparatorByRegular("d(\\W|\\w)*1");
         Assert.assertEquals(comparator.check("dafsa1"), true);
         Assert.assertEquals(comparator.check("test21"), false);
         Assert.assertEquals(comparator.check("test2"), false);
+    }
+
+    @Test
+    public void TestMaskComparator0(){
+        String params = "`.*?[a-z]{4}-\\d+\\.[a-z]+`";
+        char [] chars = params.toCharArray();
+        String param = ConverterMaskToRegular.constructParam(chars);
+        Assert.assertEquals(param, ".*?[a-z]{4}-\\d+\\.[a-z]+" );
     }
 
     @Test

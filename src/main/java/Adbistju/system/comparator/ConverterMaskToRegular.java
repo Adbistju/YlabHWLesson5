@@ -24,9 +24,9 @@ public class ConverterMaskToRegular {
         for (int i = 1; i < chars.length-j; i++) {
             newMask.append(chars[i]);
         }
-        if (!newMask.toString().matches(newMask.toString())){
-            throw new ArgumentException("this regex is not correct -> "+ String.valueOf(newMask));
-        }
+//        if (!newMask.toString().matches(newMask.toString())){
+//            throw new ArgumentException("this regex is not correct -> "+ String.valueOf(newMask));
+//        }
         return String.valueOf(newMask);
     }
 

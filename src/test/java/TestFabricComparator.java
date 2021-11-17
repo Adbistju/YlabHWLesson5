@@ -30,5 +30,11 @@ public class TestFabricComparator {
                             new String[] {"-s", "*.java"}).getClass(),
                     new ComparatorByRegular(ConverterMaskToRegular.addParam("*.java")).getClass()
             );
+
+            Assert.assertEquals(
+                    new FabricComparator().FabricComparator(
+                            new String[] {"-s", "`.*?[a-z]{4}-\\d+\\.[a-z]+`"}).getClass(),
+                    new ComparatorByRegular(ConverterMaskToRegular.addParam("`.*?[a-z]{4}-\\d+\\.[a-z]+`")).getClass()
+            );
         }
 }
